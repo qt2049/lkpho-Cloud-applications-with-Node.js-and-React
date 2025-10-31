@@ -28,6 +28,17 @@ app.get("/:name", (req, res) => {
     res.send("Hello " + req.params.name);
 });
 
+let monthsList = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+
+app.get("/fetchMonth/:num", (req, res) => {
+    let index = parseInt(req.params.num);
+    if (index >= 1 && index <= monthsList.length) {
+        res.send(monthsList[index - 1]);
+    } else {
+        res.status(400).send("Invalid month!");
+    }
+});
+
 // Start the server and listen on port 3333
 app.listen(3333, () => {
     console.log(`Listening at http://localhost:3333`);
